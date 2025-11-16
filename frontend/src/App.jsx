@@ -11,6 +11,7 @@ import Collections from "./pages/Collections";
 import Product from "./pages/Product";
 import Contact from "./pages/Contact";
 import ErrorPage from "./pages/ErrorPage";
+import ProductDetails from "./pages/ProductDetails";
 
 const App = () => {
   const { userData } = useContext(userDataContext);
@@ -62,6 +63,9 @@ const App = () => {
         }/>
         <Route path="/contact"  element={
             userData ? <Contact/> : <Navigate to="/login" state={{ from: location.pathname }}/>
+        }/>
+         <Route path="/productdetail/:productId"  element={
+            userData ? <ProductDetails/> : <Navigate to="/login" state={{ from: location.pathname }}/>
         }/>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

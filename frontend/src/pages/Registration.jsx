@@ -36,7 +36,7 @@ const handleSignup =async (e)=>{
 const googleSignup = async ()=>{
   try{
     const response = await signInWithPopup(auth, provider)
-    console.log(response);
+    // console.log(response);
     const user = response.user;
     let name = user.displayName;
     let email = user.email;

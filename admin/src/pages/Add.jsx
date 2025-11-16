@@ -17,7 +17,7 @@ const [image4, setImage4] = useState(null);
   const [price, setPrice] = useState("");
   const [subCategory, setSubCategory] = useState("TopWear");
   const [bestseller, setBestSeller] = useState(false);
-  const [sizes, setSizes] = useState("")
+  const [sizes, setSizes] = useState([])
 
   const { serverUrl } = useContext(authDataContext);
 
@@ -149,11 +149,29 @@ const [image4, setImage4] = useState(null);
 
               <div className='flex items-center justify-start gap-[15px] flex-wrap '>
               
-                {size.map((si, index) => {
+                {/* {size.map((si, index) => {
                   return (
                     <button key={index} className={`px-[20px] py-[7px] rounded-lg  text-[18px] hover:border-[#46d1f7] border-[2px] cursor-pointer ${sizes === si ? "bg-green-300 text-black border-[#46d1f7] " : " bg-slate-600"}`} onClick={() => setSizes(si)} value={sizes}>{si} </button>
                   )
-                })}
+                })} */}
+
+                <div className={`px-[20px] py-[7px] rounded-lg bg-slate-600 text-[18px] hover:border-[#46d1f7] border-[2px] cursor-pointer ${sizes.includes('S') ? "bg-green-400 text-black border-[#46d1f7]" : ""}`}
+                onClick={()=> setSizes(prev => prev.includes('S') ? prev.filter(item => item !== 'S') : [...prev, 'S']  )}
+                >S</div>
+
+                <div className={`px-[20px] py-[7px] rounded-lg bg-slate-600 text-[18px] hover:border-[#46d1f7] border-[2px] cursor-pointer ${sizes.includes('M') ? "bg-green-400 text-black border-[#46d1f7]" : ""}`}
+                onClick={()=> setSizes(prev => prev.includes('M') ? prev.filter(item => item !== 'M') : [...prev, 'M']  )}
+               >M</div>
+                <div className={`px-[20px] py-[7px] rounded-lg bg-slate-600 text-[18px] hover:border-[#46d1f7] border-[2px] cursor-pointer ${sizes.includes('L') ? "bg-green-400 text-black border-[#46d1f7]" : ""}`}
+                onClick={()=> setSizes(prev => prev.includes('L') ? prev.filter(item => item !== 'L') : [...prev, 'L']  )}
+               >L</div>
+                <div className={`px-[20px] py-[7px] rounded-lg bg-slate-600 text-[18px] hover:border-[#46d1f7] border-[2px] cursor-pointer ${sizes.includes('XL') ? "bg-green-400 text-black border-[#46d1f7]" : ""}`}
+                onClick={()=> setSizes(prev => prev.includes('XL') ? prev.filter(item => item !== 'XL') : [...prev, 'XL']  )}
+               >XL</div>
+                <div className={`px-[20px] py-[7px] rounded-lg bg-slate-600 text-[18px] hover:border-[#46d1f7] border-[2px] cursor-pointer ${sizes.includes('XXL') ? "bg-green-400 text-black border-[#46d1f7]" : ""}`}
+                onClick={()=> setSizes(prev => prev.includes('XXL') ? prev.filter(item => item !== 'XXL') : [...prev, 'XXL']  )}
+               >XXL</div>
+
 
               </div>
             </div>
@@ -165,12 +183,12 @@ const [image4, setImage4] = useState(null);
 
             </div>
 
-            <button className='w-[140px] px-[20px]  py-[20px] rounded-xl bg-[#65d8f7] flex items-center justify-center gap-[10px] text-black active:bg-slate-700 active:text-white active:border-[2px] border-white' type='submit'>Add Product</button>
+            <button className='w-[140px] px-[20px]  py-[20px] rounded-xl bg-[#65d8f7] flex items-center justify-center gap-[10px] text-black active:bg-slate-700 active:text-white active:border-[2px] border-white' type='submit'>Add Product
+              </button>
 
 
-          </form>
-
-        </div>
+        </form>
+      </div>
 
       </div>
     </>

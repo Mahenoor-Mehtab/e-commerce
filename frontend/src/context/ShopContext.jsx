@@ -16,7 +16,7 @@ const ShopContext = ({ children }) => {
     const getProduct = async () => {
         try {
             const result = await axios.get(serverUrl + "/api/product/listproduct");
-            console.log(result);
+            // console.log(result);
             setProducts(result.data)
 
         } catch (error) {

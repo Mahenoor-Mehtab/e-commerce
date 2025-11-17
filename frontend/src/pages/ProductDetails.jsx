@@ -8,7 +8,7 @@ import RelatedProduct from '../component/RelatedProduct';
 
 const ProductDetails = () => {
     const { productId } = useParams();
-    const { products, currency } = useContext(shopDataContext);
+    const { products, currency , addtoCart} = useContext(shopDataContext);
     let [productData, setProductData] = useState(false);
 
     const [image, setImage] = useState('');
@@ -121,7 +121,7 @@ const ProductDetails = () => {
                                 }
 
                             </div>
-                            <button className='text-[16px] active:bg-slate-500 cursor-pointer bg-[#495b61c9] py-[10px] px-[20px] rounded-2xl mt-[10px] border-[1px] border-[#80808049] text-white shadow-md shadow-black'>
+                            <button className='text-[16px] active:bg-slate-500 cursor-pointer bg-[#495b61c9] py-[10px] px-[20px] rounded-2xl mt-[10px] border-[1px] border-[#80808049] text-white shadow-md shadow-black' onClick={()=>addtoCart(productData._id , size)}>
                                 Add To Cart
 
                             </button>
@@ -155,8 +155,7 @@ const ProductDetails = () => {
                         className="
                         w-[80%] md:h-[150px]   h-[220px]  bg-[#3336397c]  border    text-white 
     text-[13px]    lg:text-[20px]  px-[10px]    ml-[20px]   flex   items-center    justify-center
-  "
-                    >
+  " >
                         Upgrade your wardrobe with this stylish slim-fit cotton
                         shirt, available now on OneCart. Crafted from breathable,
                         high-quality fabric, it offers all-day comfort and

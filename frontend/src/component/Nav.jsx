@@ -13,7 +13,7 @@ import { shopDataContext } from '../context/ShopContext';
 const Nav = () => {
   const { userData ,getCurrentUser } = useContext(userDataContext);
   const {serverUrl} = useContext(authDataContext);
-  const {showSearch, setShowSearch , search , setSearch} = useContext(shopDataContext)
+  const {showSearch, setShowSearch , search , setSearch , getCartCount} = useContext(shopDataContext)
   const [showProfile , setShowProfile] = useState(false);
   const navigate = useNavigate();
 
@@ -80,6 +80,10 @@ console.log(error);
         )}
 
         <IoCartOutline className="w-[30px] h-[30px] cursor-pointer hidden md:block" />
+
+        <p className='absolute w-[18px] h-[18px] items-center justify-center bg-black px-[5px] py-[2px] text-white rounded-full text-[10px] top-[10px] right-23px] hidden md:block border-white border-2 font-extrabold '>{getCartCount()}
+
+        </p>
       </div>
 
     { showSearch &&  <div className='w-[100%] h-[80px] bg-[#d8f6f9dd] absolute top-[100%] left-0 right-0 flex items-center justify-center z-10'>
@@ -120,8 +124,19 @@ onClick={()=> navigate('/')}/> Home  </button>
  <button className='text-[white] flex items-center  justify-center flex-col gap-[2px] '>
 <IoMdContact className="w-[20px] h-[20px] cursor-pointer" onClick={()=> navigate('/contact')}/>Contact </button>
 
- <button className='text-[white] flex items-center  justify-center flex-col gap-[2px] '>
- <IoCartOutline className="w-[20px] h-[20px] cursor-pointer"/> Cart </button>
+{/* Cart button*/}
+  <button
+    className='relative text-white flex items-center justify-center flex-col gap-[2px]'
+    onClick={() => navigate('/cart')}
+  >
+    <IoCartOutline className="w-[20px] h-[20px] cursor-pointer" />
+    Cart
+
+    {/* Badge: absolute relative to this button */}
+    <span className='absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] flex items-center justify-center bg-white text-black rounded-full text-[9px] border-white border-2 font-extrabold'>
+      {getCartCount()}
+    </span>
+  </button>
 
 
    </div>

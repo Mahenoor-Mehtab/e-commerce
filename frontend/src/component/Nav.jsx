@@ -79,7 +79,7 @@ console.log(error);
           </div>
         )}
 
-        <IoCartOutline className="w-[30px] h-[30px] cursor-pointer hidden md:block" />
+        <IoCartOutline className="w-[30px] h-[30px] cursor-pointer hidden md:block" onClick={()=> navigate('/cart')} />
 
         <p className='absolute w-[18px] h-[18px] items-center justify-center bg-black px-[5px] py-[2px] text-white rounded-full text-[10px] top-[10px] right-23px] hidden md:block border-white border-2 font-extrabold '>{getCartCount()}
 
@@ -129,7 +129,7 @@ onClick={()=> navigate('/')}/> Home  </button>
     className='relative text-white flex items-center justify-center flex-col gap-[2px]'
     onClick={() => navigate('/cart')}
   >
-    <IoCartOutline className="w-[20px] h-[20px] cursor-pointer" />
+    <IoCartOutline className="w-[20px] h-[20px] cursor-pointer" onClick={()=> navigate('/cart')} />
     Cart
 
     {/* Badge: absolute relative to this button */}

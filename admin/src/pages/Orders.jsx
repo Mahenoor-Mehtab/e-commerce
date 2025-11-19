@@ -22,6 +22,20 @@ console.log(error);
     }
   }
 
+  const stateHandler = async(e , orderId) =>{
+    try{
+      const result = await axios.post(serverUrl + '/api/order/status' , {orderId , status:e.target.value}, {withCredentials:true})
+      if(result.data){
+        await fetchAllOrders()
+      }
+
+    }catch(error){
+      console.log(error);
+
+
+    }
+  }
+
   useEffect(()=>{
 fetchAllOrders();
   },[])
@@ -45,15 +59,53 @@ fetchAllOrders();
 <div>
   <div className='flex items-start justify-center flex-col gap-[5px] text-[16px] text-[#56dbfc]'>
     {
-      order.items.map((item , index)=>{
+      order.item.map((item , index)=>{
+        if(index === order.item.length -1){
+          return <p key={index} > {item.name.toUpperCase()}   *   {item.quantity} <span>
+            {item.size}
+          </span></p>
+        }else{
+           return <p key={index} > {item.name.toUpperCase()}   *   {item.quantity} <span>
+            {item.size}
+          </span>,</p>
+        }
+
         
 
       })
     }
 
   </div>
+  <div className='text-[15px] text-green-100'>
+    <p>{order.address.firstName.toUpperCase() +" " + order.address.lastName.toUpperCase()} </p>
+    <p>{order.address.street + ','}</p>
+    <p>{order.address.city + " , " + order.address.state + "'" + order.address.country + "," + order.address.punCode }</p>
+    <p>{order.address.phone}</p>
+
+  </div>
+
 
 </div>
+<div className='text-[15px] text-green-100'>
+  <p>Items: {order.item.length}</p>
+  <p>Methos: {order.paymentMethod}</p>
+  <p>Payment: {order.payment ? 'Done' : 'Pending'}</p>
+<p>Date: {new Date(order.date).toLocaleDateString()}
+
+</p>
+<p className='text-[20px] text-white'> Rs. {order.amount}
+
+  </p>
+</div>
+
+<select value={order.status} className='px-[5px] py-[10px] bg-slate-500 rounded-lg border-[1px] border-[#96eef3]' onChange={(e)=> stateHandler(e, order._id)}>
+  <option value="Order Placed">Order Placed</option>
+  <option value="Packing">Packing</option>
+  <option value="Shipped">Shipped</option>
+  <option value="Out for delivery">Out for delivery</option>
+  <option value="Delivered">Delivered</option>
+</select>
+
 
     </div>
  ))

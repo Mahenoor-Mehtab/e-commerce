@@ -9,6 +9,7 @@ import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./model/authRoutes.js";
 import productRoutes from "./routes/productRoute.js";
 import cartRoute from "./routes/cartRoute.js";
+import orderRoutes from "./routes/orderRoute.js";
 
 // connect to database
 connectDB();
@@ -25,6 +26,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/product", productRoutes)
 app.use("/api/cart", cartRoute);
+app.use("/api/order", orderRoutes);
 
 
 
